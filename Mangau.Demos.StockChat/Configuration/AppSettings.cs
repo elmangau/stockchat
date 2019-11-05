@@ -13,5 +13,7 @@ namespace Mangau.Demos.StockChat.Configuration
         public int LogoutExpiredInterval { get; set; }
 
         public int MaxChatMessages { get; set; } = 50;
+
+        public string StockApiBaseAddress { get; set; }
     }
 }

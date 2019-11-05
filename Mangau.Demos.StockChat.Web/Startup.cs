@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Net.Http;
 using System.Text;
 
 namespace Mangau.Demos.StockChat.Web
@@ -80,6 +82,14 @@ namespace Mangau.Demos.StockChat.Web
             {
                 dbctx.Database.Migrate();
             }
+
+            Action<HttpClient> secServicesConfigClient = client =>
+            {
+                client.BaseAddress = new Uri(appSettings.StockApiBaseAddress);
+                client.DefaultRequestHeaders.Add("Accept", "text/csv; charset=utf-8");
+                client.DefaultRequestHeaders.Add("User-Agent", "Mangau Stock Chat");
+            };
+            services.AddHttpClient<ISockApiClient, StockApiClient>(secServicesConfigClient);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
