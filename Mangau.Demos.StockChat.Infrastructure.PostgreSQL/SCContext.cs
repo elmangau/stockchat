@@ -23,7 +23,7 @@ namespace Mangau.Demos.StockChat.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseNpgsql(AppSettings.ConnectionStrings.PostgreSQL);
+            options.UseNpgsql(AppSettings?.ConnectionStrings?.PostgreSQL ?? "PostgreSQL");
         }
     }
 }

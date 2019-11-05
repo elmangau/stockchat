@@ -11,5 +11,7 @@ namespace Mangau.Demos.StockChat.Configuration
         public AuthenticationSettings Authentication { get; set; }
 
         public int LogoutExpiredInterval { get; set; }
+
+        public int MaxChatMessages { get; set; } = 50;
     }
 }

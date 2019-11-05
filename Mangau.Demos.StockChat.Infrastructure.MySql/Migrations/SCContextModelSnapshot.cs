@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mangau.Demos.StockChat.Infrastructure.MySql.Migrations
 {
     [DbContext(typeof(SCContext))]
-    partial class WnuContextModelSnapshot : ModelSnapshot
+    partial class SCContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -16,6 +16,30 @@ namespace Mangau.Demos.StockChat.Infrastructure.MySql.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("Mangau.Demos.StockChat.Entities.ChatMessage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasMaxLength(100000);
+
+                    b.Property<long>("PostedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("PostedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostedById");
+
+                    b.ToTable("scchatmessage");
+                });
 
             modelBuilder.Entity("Mangau.Demos.StockChat.Entities.Group", b =>
                 {
@@ -59,6 +83,20 @@ namespace Mangau.Demos.StockChat.Infrastructure.MySql.Migrations
                             Active = true,
                             Description = "System Administrators",
                             Name = "Administrators"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Active = true,
+                            Description = "System's Internal Users",
+                            Name = "Internals"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Active = true,
+                            Description = "Users for Testing",
+                            Name = "TestUsers"
                         });
                 });
 
@@ -91,6 +129,11 @@ namespace Mangau.Demos.StockChat.Infrastructure.MySql.Migrations
                         {
                             GroupId = 2L,
                             PermissionId = 2L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            PermissionId = 1L
                         });
                 });
 
@@ -121,8 +164,108 @@ namespace Mangau.Demos.StockChat.Infrastructure.MySql.Migrations
                         },
                         new
                         {
+                            GroupId = 1L,
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            GroupId = 1L,
+                            UserId = 4L
+                        },
+                        new
+                        {
+                            GroupId = 1L,
+                            UserId = 5L
+                        },
+                        new
+                        {
+                            GroupId = 1L,
+                            UserId = 6L
+                        },
+                        new
+                        {
+                            GroupId = 1L,
+                            UserId = 7L
+                        },
+                        new
+                        {
+                            GroupId = 1L,
+                            UserId = 8L
+                        },
+                        new
+                        {
+                            GroupId = 1L,
+                            UserId = 9L
+                        },
+                        new
+                        {
+                            GroupId = 1L,
+                            UserId = 10L
+                        },
+                        new
+                        {
+                            GroupId = 1L,
+                            UserId = 11L
+                        },
+                        new
+                        {
                             GroupId = 2L,
                             UserId = 1L
+                        },
+                        new
+                        {
+                            GroupId = 3L,
+                            UserId = 12L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 4L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 5L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 6L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 7L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 8L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 9L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 10L
+                        },
+                        new
+                        {
+                            GroupId = 4L,
+                            UserId = 11L
                         });
                 });
 
@@ -308,10 +451,119 @@ namespace Mangau.Demos.StockChat.Infrastructure.MySql.Migrations
                             Active = true,
                             FirstName = "Test",
                             LastName = "01",
-                            Password = "$2y$10$qrGKsfUDysr7fR18ZWlkxOYWMg6D.Of3CeCUzZLGC27xS4VV4AzqW",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
                             Recover = false,
                             UserName = "test01"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "02",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test02"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "03",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test03"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "04",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test04"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "05",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test05"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "06",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test06"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "07",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test07"
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "08",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test08"
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "09",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test09"
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            Active = true,
+                            FirstName = "Test",
+                            LastName = "10",
+                            Password = "$2y$12$NisvmmSjik8b3FMY8Muhb.tvuW/FDQyMhvM879rRVaaBSXajktHYy",
+                            Recover = false,
+                            UserName = "test10"
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            Active = true,
+                            FirstName = "Chat",
+                            LastName = "Bot",
+                            Password = "",
+                            Recover = false,
+                            UserName = "chatbot"
                         });
+                });
+
+            modelBuilder.Entity("Mangau.Demos.StockChat.Entities.ChatMessage", b =>
+                {
+                    b.HasOne("Mangau.Demos.StockChat.Entities.User", "PostedBy")
+                        .WithMany("Messages")
+                        .HasForeignKey("PostedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Mangau.Demos.StockChat.Entities.GroupPermission", b =>

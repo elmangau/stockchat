@@ -38,5 +38,7 @@ namespace Mangau.Demos.StockChat.Entities
         public virtual IList<GroupUser> GroupsUsers { get; set; }
 
         public virtual IList<SessionToken> SessionTokens { get; set; }
+
+        public virtual IList<ChatMessage> Messages { get; set; }
     }
 }

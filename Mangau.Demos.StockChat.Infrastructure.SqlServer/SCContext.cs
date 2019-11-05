@@ -23,7 +23,7 @@ namespace Mangau.Demos.StockChat.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(AppSettings.ConnectionStrings.SqlServer);
+            options.UseSqlServer(AppSettings?.ConnectionStrings?.SqlServer ?? "SQLServer");
         }
     }
 }

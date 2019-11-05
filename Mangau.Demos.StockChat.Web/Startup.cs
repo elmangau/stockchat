@@ -36,6 +36,9 @@ namespace Mangau.Demos.StockChat.Web
         {
             var appSettings = services.AddAppSettings(Configuration);
 
+            services.AddHostedService<QueuedHostedBackgroundServicev>();
+            services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
+
             services.AddScoped<SCContextBase, SCContext>((sp) => new SCContext(appSettings));
 
             services.AddControllersWithViews();
@@ -65,6 +68,9 @@ namespace Mangau.Demos.StockChat.Web
                         ValidateAudience = false
                     };
                 });
+
+
+            services.AddSingleton<IChatMessagesQueue, ChatMessagesQueue>();
 
             services.AddScoped<IUserService, UserService>();
 

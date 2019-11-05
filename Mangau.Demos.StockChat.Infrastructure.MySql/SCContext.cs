@@ -23,7 +23,7 @@ namespace Mangau.Demos.StockChat.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseMySql(AppSettings.ConnectionStrings.MySql);
+            options.UseMySql(AppSettings?.ConnectionStrings?.MySql ?? "database=;server=;port=3306;user id=;password=");
         }
     }
 }

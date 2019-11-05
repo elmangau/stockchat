@@ -23,7 +23,7 @@ namespace Mangau.Demos.StockChat.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite(AppSettings.ConnectionStrings.SqLite);
+            options.UseSqlite(AppSettings?.ConnectionStrings?.SqLite ?? "SQLite");
         }
     }
 }

@@ -3,42 +3,69 @@ using System;
 using Mangau.Demos.StockChat.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Mangau.Demos.StockChat.Infrastructure.SqlServer.Migrations
+namespace Mangau.Demos.StockChat.Infrastructure.PostgreSQL.Migrations
 {
     [DbContext(typeof(SCContext))]
-    partial class WnuContextModelSnapshot : ModelSnapshot
+    [Migration("20191105022240_ChatMessage")]
+    partial class ChatMessage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("Mangau.Demos.StockChat.Entities.ChatMessage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("character varying(100000)")
+                        .HasMaxLength(100000);
+
+                    b.Property<long>("PostedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("PostedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostedById");
+
+                    b.ToTable("scchatmessage");
+                });
 
             modelBuilder.Entity("Mangau.Demos.StockChat.Entities.Group", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(true);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("character varying(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("character varying(64)")
                         .HasMaxLength(64);
 
                     b.HasKey("Id");
@@ -134,21 +161,21 @@ namespace Mangau.Demos.StockChat.Infrastructure.SqlServer.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(true);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("character varying(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("character varying(64)")
                         .HasMaxLength(64);
 
                     b.Property<long>("PermissionCategoryId")
@@ -187,21 +214,21 @@ namespace Mangau.Demos.StockChat.Infrastructure.SqlServer.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(true);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("character varying(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("character varying(64)")
                         .HasMaxLength(64);
 
                     b.HasKey("Id");
@@ -233,13 +260,13 @@ namespace Mangau.Demos.StockChat.Infrastructure.SqlServer.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("Expires")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("LoggedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -256,36 +283,36 @@ namespace Mangau.Demos.StockChat.Infrastructure.SqlServer.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(128)")
+                        .HasColumnType("character varying(128)")
                         .HasMaxLength(128);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(128)")
+                        .HasColumnType("character varying(128)")
                         .HasMaxLength(128);
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(128)")
+                        .HasColumnType("character varying(128)")
                         .HasMaxLength(128);
 
                     b.Property<bool>("Recover")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("character varying(64)")
                         .HasMaxLength(64);
 
                     b.HasKey("Id");
@@ -319,6 +346,15 @@ namespace Mangau.Demos.StockChat.Infrastructure.SqlServer.Migrations
                             Recover = false,
                             UserName = "test01"
                         });
+                });
+
+            modelBuilder.Entity("Mangau.Demos.StockChat.Entities.ChatMessage", b =>
+                {
+                    b.HasOne("Mangau.Demos.StockChat.Entities.User", "PostedBy")
+                        .WithMany("Messages")
+                        .HasForeignKey("PostedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Mangau.Demos.StockChat.Entities.GroupPermission", b =>

@@ -58,12 +58,18 @@ namespace Mangau.Demos.StockChat.Infrastructure
                 return null;
             }
 
+            var res = new UserDetails(user, true);
+
+            if (!res.Permissions.Any(p => string.Compare("Users.Login", p, StringComparison.InvariantCultureIgnoreCase) == 0))
+            {
+                return null;
+            }
+
             var expires = DateTime.UtcNow.AddDays(7);
 
             var st = await _wnuContext.SessionTokens.AddAsync(new SessionToken { UserId = user.Id, LoggedAt = DateTime.UtcNow, Expires = expires }, cancellationToken);
             await _wnuContext.SaveChangesAsync(cancellationToken);
 
-            var res = new UserDetails(user, true);
             var claims = new List<Claim>() 
             {
                 new Claim(ClaimTypes.Name, st.Entity.Id.ToString()),
