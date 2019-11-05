@@ -21,6 +21,7 @@ var Utils = require("./Utils");
 var ExtendedRoute_1 = require("./ExtendedRoute");
 var react_bootstrap_1 = require("react-bootstrap");
 var Login_1 = require("./Login");
+var ChatMessages_1 = require("./ChatMessages");
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App(props) {
@@ -54,7 +55,7 @@ var App = /** @class */ (function (_super) {
                         this.state.isAuthenticated ? React.createElement(react_bootstrap_1.Button, { size: "sm", onClick: this.onLogoutClick }, "Logout") : React.createElement("span", null),
                         this.state.reloadApp ? React.createElement(react_router_dom_1.Redirect, { to: '/' }) : React.createElement("span", null))),
                 React.createElement(react_router_dom_1.Switch, null,
-                    React.createElement(ExtendedRoute_1.ExtendedRoute, { exact: true, path: "/", component: exports.Home, useAlternatePath: !this.state.isAuthenticated, alternatePath: "/login" }),
+                    React.createElement(ExtendedRoute_1.ExtendedRoute, { exact: true, path: "/", component: ChatMessages_1.default, useAlternatePath: !this.state.isAuthenticated, alternatePath: "/login" }),
                     React.createElement(ExtendedRoute_1.ExtendedRoute, { exact: true, path: "/login", component: Login_1.default, withProps: {
                             onLogin: function (event) {
                                 _this.setState(function () { return ({
@@ -67,5 +68,4 @@ var App = /** @class */ (function (_super) {
     return App;
 }(React.Component));
 exports.default = App;
-exports.Home = function () { return React.createElement("h1", null, "Home Page"); };
 //# sourceMappingURL=App.js.map

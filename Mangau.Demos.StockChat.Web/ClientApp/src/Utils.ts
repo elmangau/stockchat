@@ -1,4 +1,6 @@
-﻿export const getRequestHeaders = () => {
+﻿import { ChatMessage } from './Models/ChatMessage';
+
+export const getRequestHeaders = () => {
     const jwtToken = localStorage.jwtToken;
 
     return {
@@ -48,3 +50,21 @@ export const userLogoutFetch = () => {
         })
 }
 
+export const getMessagesFetch = () => {
+    return fetch("api/messages", {
+        method: "GET",
+        headers: getRequestHeaders()
+    })
+        .then(resp => resp.json())
+        .then(data => {
+            return data as ChatMessage[];
+        })
+}
+
+export const sendMessageFetch = (message: string) => {
+    return fetch("api/messages", {
+        method: "POST",
+        headers: getRequestHeaders(),
+        body: JSON.stringify({ 'message': message })
+    });
+}

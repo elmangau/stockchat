@@ -9,6 +9,7 @@ import { ExtendedRoute } from './ExtendedRoute';
 import { Button } from 'react-bootstrap';
 
 import Login from './Login';
+import ChatMessages from './ChatMessages';
 
 class App extends React.Component {
     state = {
@@ -46,7 +47,7 @@ class App extends React.Component {
                         </header>
                     </div>
                     <Switch>
-                        <ExtendedRoute exact path="/" component={Home} useAlternatePath={!this.state.isAuthenticated} alternatePath="/login" />
+                        <ExtendedRoute exact path="/" component={ChatMessages} useAlternatePath={!this.state.isAuthenticated} alternatePath="/login" />
                         <ExtendedRoute exact path="/login" component={Login} withProps={{
                             onLogin: (event: any) => {
                                 this.setState(() => ({
@@ -63,5 +64,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-export const Home = () => <h1>Home Page</h1>;

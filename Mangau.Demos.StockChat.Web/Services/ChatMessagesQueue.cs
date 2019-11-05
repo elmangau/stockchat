@@ -49,7 +49,7 @@ namespace Mangau.Demos.StockChat.Web.Services
                     _messages.Clear();
 
                     var scContext = serviceProvider.GetRequiredService<SCContextBase>();
-                    var maxChatMessages = Math.Min(10, Math.Max(1000, _appSettings.MaxChatMessages));
+                    var maxChatMessages = Math.Max(10, Math.Min(1000, _appSettings.MaxChatMessages));
                     var msgs = await scContext.ChatMessages
                         .Include(cm => cm.PostedBy)
                         .OrderByDescending(cm => cm.PostedOn)
@@ -96,7 +96,7 @@ namespace Mangau.Demos.StockChat.Web.Services
                 var stcm = scContext.ChatMessages.Add(cm);
                 await scContext.SaveChangesAsync(cancellationToken);
 
-                var maxChatMessages = Math.Min(10, Math.Max(1000, _appSettings.MaxChatMessages)) - 1;
+                var maxChatMessages = Math.Max(10, Math.Min(1000, _appSettings.MaxChatMessages)) - 1;
 
                 while (_messages.Count > maxChatMessages)
                 {

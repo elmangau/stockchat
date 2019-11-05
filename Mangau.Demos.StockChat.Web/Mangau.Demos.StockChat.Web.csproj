@@ -34,9 +34,11 @@
 
     <ItemGroup>
         <None Remove="ClientApp\src\App.tsx" />
+        <None Remove="ClientApp\src\ChatMessages.tsx" />
         <None Remove="ClientApp\src\ExtendedRoute.tsx" />
         <None Remove="ClientApp\src\index.tsx" />
         <None Remove="ClientApp\src\Login.tsx" />
+        <None Remove="ClientApp\src\Models\ChatMessage.ts" />
         <None Remove="ClientApp\src\Utils.ts" />
     </ItemGroup>
 

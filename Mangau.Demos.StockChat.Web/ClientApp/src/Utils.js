@@ -45,4 +45,21 @@ exports.userLogoutFetch = function () {
         localStorage.removeItem("currentUser");
     });
 };
+exports.getMessagesFetch = function () {
+    return fetch("api/messages", {
+        method: "GET",
+        headers: exports.getRequestHeaders()
+    })
+        .then(function (resp) { return resp.json(); })
+        .then(function (data) {
+        return data;
+    });
+};
+exports.sendMessageFetch = function (message) {
+    return fetch("api/messages", {
+        method: "POST",
+        headers: exports.getRequestHeaders(),
+        body: JSON.stringify({ 'message': message })
+    });
+};
 //# sourceMappingURL=Utils.js.map

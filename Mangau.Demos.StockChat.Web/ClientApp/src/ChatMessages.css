@@ -1,0 +1,5 @@
+@media all and (min-width: 480px) {
+  .ChatMessages {
+    padding: 20px 0; }
+  .ChatMessages div {
+    margin: 10px 10px; } }
