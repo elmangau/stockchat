@@ -250,3 +250,4 @@ nb-configuration.xml
 node_modules/
 package-lock.json
 yarn.lock
+Mangau.Demos.StockChat.Web.Deploy/

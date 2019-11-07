@@ -43,9 +43,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Mangau.Demos.StockChat.Infrastructure.SqLite\Mangau.Demos.StockChat.Infrastructure.SqLite.csproj" />
         <ProjectReference Include="..\Mangau.Demos.StockChat.Infrastructure\Mangau.Demos.StockChat.Infrastructure.csproj" />
         <ProjectReference Include="..\Mangau.Demos.StockChat\Mangau.Demos.StockChat.csproj" />
+        <ProjectReference Include="..\Mangau.Demos.StockChat.Infrastructure.SqLite\Mangau.Demos.StockChat.Infrastructure.SqLite.csproj" />
     </ItemGroup>
 
     <ItemGroup>
