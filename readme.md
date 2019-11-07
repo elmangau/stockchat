@@ -1,6 +1,4 @@
-# Project Title
-
-Mangau Stock Chat Demo
+# Mangau Stock Chat Demo
 
 ## Getting Started
 
@@ -30,13 +28,13 @@ The compile files will be located on bin/Debug/netcoreapp3.0 folder.
 
 ## Publishing with DotNet command line tool
 
-You can generate a production ready deploy for the Mangau Stock Chat Demo application running the following command in PowerShel. You must be on the folder that contains the Mangau.Demos.StockChat.sln file.
+You can generate a production ready deploy for the Mangau Stock Chat Demo application running the following command in Power Shell. You must be on the folder that contains the Mangau.Demos.StockChat.sln file.
 
 ```
 dotnet publish -c Release --force -v n -o ./Mangau.Demos.StockChat.Web.Deploy ./Mangau.Demos.StockChat.Web/Mangau.Demos.StockChat.Web.csproj
 ```
 
-The ./Mangau.Demos.StockChat.Web.Deploy folder will contain the files need to install the application on a production machine.
+The ./Mangau.Demos.StockChat.Web.Deploy folder will contain the files needed to install the application on a production machine.
 
 ## Main Database
 
@@ -66,13 +64,13 @@ This file contains the settings for the application to run, including Connection
 ```
 {
     "ConnectionStrings": {
-        "MySql": "database=stockchat;server=localhost;port=3306;user id=stockchat;password=Prueba#8",
+        "MySql": "database=stockchat;server=localhost;port=3306;user id=stockchat;password=StockChatPass#8",
         "SqLite": "Data Source=StockChat.db",
         "SqlServer": "",
         "PostgreSQL": ""
     },
     "Authentication": {
-        "JwtSecretKey": "THIS IS A TEST FOR AUTHENTICATION WITH JWT"
+        "JwtSecretKey": "THIS IS THE MAIN KEY FOR AUTHORIZATION WITH JWT"
     },
     "LogoutExpiredInterval": 60,
     "MaxChatMessages": 50,
@@ -81,7 +79,7 @@ This file contains the settings for the application to run, including Connection
 ```
 
 * ConnectionString: In this section you specify the connection parameters for the configured data base.
-* Authentication: Ins this section you specify the Key that will be used by the application to encode and validate the JWT authorization tokens.
-* LogoutExpiredInterval: This parameter you can specify the interval that the application will check for expired authorization tokens, and remove any expired token.
+* Authentication: In this section you specify the Key that will be used by the application to encode and validate the JWT authorization tokens.
+* LogoutExpiredInterval: This parameter you can specify the interval, in seconds, that the application will use to check for expired authorization tokens, and remove any expired token.
 * MaxChatMessages: With this parameter you specify how many chat messages will be managed and showed at a time.
 * StockApiBaseAddress: This is the base address for the Stock Share API that will be used for stock share queries.
